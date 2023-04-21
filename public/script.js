@@ -61,3 +61,17 @@ function addMessage(data, flag) {
 }
 
 //function if some sender sends the message, receive that message and append that child
+
+document.getElementById("exit-btn").addEventListener("click", () => {
+    socket.emit("user left", username);
+});
+
+
+//user exit message from chat
+socket.on("user left", (data) => {
+    if (data !== username) {
+        var msgDiv = document.createElement("div");
+        msgDiv.innerText = `${data} has left!`;
+        document.querySelector("#messages-container").appendChild(msgDiv);
+    }
+});

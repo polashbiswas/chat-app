@@ -20,6 +20,9 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);
     });
+    socket.on("user left", (data) => {
+        io.emit("user left", data);
+    })
 });
 
 const PORT = process.env.PORT || 3000;
